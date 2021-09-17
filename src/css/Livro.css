@@ -1,0 +1,33 @@
+.card-livro {
+  list-style-type: none;
+  list-style: none;
+  display: inline-block;
+  padding: 20px;
+  flex-direction: line;
+  max-width: 200px;
+  display: inline-block;
+  margin-left: 15px;
+  margin-bottom: 15px;
+}
+
+
+.book-title{
+    overflow: hidden;
+    color: rgba(0,0,0,.85);
+    font-weight: 500;
+    font-size: 16px;
+    white-space: nowrap;
+    margin-top: 5px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+.book-authors{
+    overflow: hidden;
+    color: rgba(63, 63, 63, 0.85);
+    font-weight: 500;
+    font-size: 16px;
+    white-space: nowrap;
+    margin-top: 5px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}

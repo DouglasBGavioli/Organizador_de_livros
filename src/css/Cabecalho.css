@@ -1,0 +1,68 @@
+.main {
+  font-family: Arial, Helvetica, sans-serif;
+  display: inline block;
+  width: 100%;
+  height: 100%;
+}
+.header {
+  background-color: rgb(0, 21, 41);
+  width: 100%;
+}
+.logo{
+  display: inline-block;
+  width: 70px;
+  position: absolute;
+  top: 12px;
+  left: 70px;
+  border: solid 1px white;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 1px 3px 2px 1px white;
+  box-sizing: 10px;
+  transition: 0.1s;
+}
+.logo:hover{
+  border: solid 1px rgb(0, 175, 238);
+  box-shadow: 1px 3px 2px 1px rgb(0, 175, 238);
+}
+.logo:active{
+  width: 75px;
+}
+.header__menu {
+  padding: 30px;
+}
+a {
+  color: white;
+  text-decoration: none;
+  padding-right: 40px;
+}
+.menu__list {
+  font-size: 20px;
+  margin-left: 200px;
+}
+.menu__links {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 150px;
+  text-align: center;
+  margin-right: 10px;
+  padding: 7px;
+  border: solid 1px white;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 1px 3px 2px 1px white;
+  box-sizing: 10px;
+  transition: 1s;
+}
+
+.menu__links:hover {
+  border: solid 1px rgb(0, 175, 238);
+  box-shadow: 1px 3px 2px 1px rgb(0, 175, 238);
+}
+input {
+  padding: 7px;
+  border: solid 2px rgb(0, 175, 238);
+  border-radius: 10px 10px 10px 10px;
+}
+.body {
+  width: 100%;
+  margin: 40px;
+}
