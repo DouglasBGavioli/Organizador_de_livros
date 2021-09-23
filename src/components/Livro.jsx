@@ -1,19 +1,25 @@
-import React, { useState } from "react";
-import { getMyBooks } from "../api/api.js";
+import React, { useEffect, useState } from "react";
+import { getMyBooks, updateBook } from "../api/api.js";
 import "../css/Livro.css";
 
 function Livro(props) {
-  const [livro, setLivro] = useState([]);
-  const estado = props.estado;
-  getMyBooks().then(function (data) {
-    setLivro(data.books);
-  });
+  const [livros, setLivro] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+  const estante = props.estante;
+  useEffect(() => {
+    getMyBooks().then(function (data) {
+      setLivro(data.books);
+    });
+    if (refresh) {
+      setRefresh(false);
+    }
+  }, [refresh]);
   return (
-    <container>
-      {livro.map((livros) => {
-        if (livros.shelf === estado)
+    <div>
+      {livros.map((livro) => {
+        if (livro.shelf === estante)
           return (
-            <li className="card-livro">
+            <li className="card-livro" key={livro.id}>
               <div className="book">
                 <div className="book-top">
                   <div
@@ -21,12 +27,16 @@ function Livro(props) {
                     style={{
                       width: 128,
                       height: 193,
-                      backgroundImage: `url(${livros.imageLinks.thumbnail})`,
+                      backgroundImage: `url(${livro.imageLinks.thumbnail})`,
                     }}
                   ></div>
                   <div></div>
                   <div className="seletor">
-                    <select>
+                    <select
+                      onChange={(event) =>
+                        handleChange(livro, event.target.value)
+                      }
+                    >
                       <option value="move" disabled selected>
                         Mover para...
                       </option>
@@ -39,14 +49,18 @@ function Livro(props) {
                 </div>
 
                 <section>
-                  <div className="book-title">{livros.title}</div>
-                  <div className="book-authors">{livros.authors}</div>
+                  <div className="book-title">{livro.title}</div>
+                  <div className="book-authors">{livro.authors}</div>
                 </section>
               </div>
             </li>
           );
       })}
-    </container>
+    </div>
   );
+
+  function handleChange(books, shelf) {
+    updateBook(books, shelf).then(() => setRefresh(true));
+  }
 }
 export default Livro;

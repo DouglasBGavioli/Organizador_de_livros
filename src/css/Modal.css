@@ -1,0 +1,38 @@
+h1{
+    color: white;
+}
+.modal{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: top;
+}.container{
+    width: 90%;
+    height: 90%;
+  
+  }
+
+.busca{
+    top: 10px;
+}
+.close{
+    background-color: transparent;
+    outline: none;
+    width: 32px;
+    height: 32px;
+    right: 10px;
+    top: 10px;
+    font-weight: bold;
+    position: absolute;
+    color: white;
+    align-items: center;
+
+}
+.card-livro{
+    margin-top: 20px;
+}

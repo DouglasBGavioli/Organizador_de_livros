@@ -8,7 +8,7 @@ function Lidos() {
       <h2 className="bookshelf-title">LIDOS</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          <Livro estado="read"/>
+          <Livro estante="read"/>
         </ol>
       </div>
     </section>

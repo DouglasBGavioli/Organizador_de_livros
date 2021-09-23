@@ -57,10 +57,12 @@ a {
   border: solid 1px rgb(0, 175, 238);
   box-shadow: 1px 3px 2px 1px rgb(0, 175, 238);
 }
+
 input {
   padding: 7px;
   border: solid 2px rgb(0, 175, 238);
   border-radius: 10px 10px 10px 10px;
+  margin-top: 10px;
 }
 .body {
   width: 100%;

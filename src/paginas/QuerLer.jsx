@@ -8,7 +8,7 @@ function QuerLer() {
       <h2 className="bookshelf-title">QUERO LER</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          <Livro estado="wantToRead"/>
+          <Livro estante="wantToRead"/>
         </ol>
       </div>
     </section>
