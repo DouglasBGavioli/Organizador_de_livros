@@ -10,28 +10,28 @@ function Cabecalho() {
     <header className="header">
       <nav className="header__menu">
         <ul className="menu__list">
-          <Link classname="menu__link" to="/">
-            <img class="logo" src={book} alt="logo" />
+          <Link className="menu__link" to="/">
+            <img className="logo" src={book} alt="logo" />
           </Link>
 
-          <li class="menu__links">
-            <Link classname="menu__link" to="/">
+          <li className="menu__links">
+            <Link className="menu__link" to="/">
               Lendo
             </Link>
           </li>
-          <li class="menu__links">
-            <Link classname="menu__link" to="/QuerLer">
+          <li className="menu__links">
+            <Link className="menu__link" to="/QuerLer">
               Quero ler
             </Link>
           </li>
-          <li class="menu__links">
-            <Link classname="menu__link" to="/Lidos">
+          <li className="menu__links">
+            <Link className="menu__link" to="/Lidos">
               Ja lidos
             </Link>
           </li>
-          <button class="menu__links">
+          <li className="menu__links">
             <Buscar />
-          </button>
+          </li>
         </ul>
       </nav>
     </header>

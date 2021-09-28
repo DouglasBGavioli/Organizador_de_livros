@@ -1,6 +1,9 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { searchBooks, updateBook } from "../api/api.js";
 import "../css/Buscar.css";
+import Autocomplete from "@material-ui/core/Autocomplete";
+import { TextField } from "@material-ui/core";
+import {option} from '../helpers/Globals.js'
 
 import Modal from "./Modal";
 
@@ -10,18 +13,18 @@ function Buscar() {
   const [input, setInput] = useState([]);
   const [pesquisa, setPesquisa] = useState([]);
   const [livros, setLivros] = useState([]);
-  const arr = ['Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief', 'Business', 'Camus', 'Cervantes', 'Christie', 'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi', 'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'
-]
+  const options= option();
+  
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-        if(arr.includes(input)){
-          setPesquisa(input);
-          setRefresh(true);
-        }else{
-          alert("Palvra não aceita");
-        }
+      if (options.includes(input)) {
+        setPesquisa(input);
+        setRefresh(true);
+      } else {
+        alert("Palvra não aceita");
       }
+    }
   };
   useEffect(() => {
     searchBooks(pesquisa).then(function (data) {
@@ -30,7 +33,7 @@ function Buscar() {
     if (refresh) {
       setRefresh(false);
     }
-  }, [refresh]);
+  }, [pesquisa, refresh]);
 
   return (
     <div className="buscar">
@@ -40,23 +43,29 @@ function Buscar() {
       {isModalVisible ? (
         <Modal onClose={() => setIsModalVisible(false)}>
           <div className="buscar">
-            <label for="busca"></label>
-            <input
-              value={input}
-              onChange={(event) => {
-                setInput(event.target.value);
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={options}
+              sx={{
+                width: 350,
+                backgroundColor: "white",
+                marginTop: 2,
+                alignItems: "center",
               }}
-              onKeyPress={handleKeyPress}
-              classname="busca"
-              type="text"
-              id="busca"
-              name="busca"
-              placeholder="Buscar livros"
+              renderInput={(params) => (
+                <TextField
+                  onSelect={(event) => setInput(event.target.value)}
+                  onKeyPress={handleKeyPress}
+                  {...params}
+                  label="Buscar"
+                />
+              )}
             />
           </div>
           {livros.map((livro) => {
             return (
-              <li className="card-livro" key={livro.id}>
+              <div className="card-livro" key={livro.id}>
                 <div className="book">
                   <div className="book-top">
                     <div
@@ -74,14 +83,12 @@ function Buscar() {
                           handleChange(livro, event.target.value)
                         }
                       >
-                        <option value="move" disabled selected>
+                        <option value="move" disabled defaultValue>
                           Mover para...
                         </option>
-                        <option value="currentlyReading">
-                          Lendo atualmente
-                        </option>
-                        <option value="wantToRead">Desejo ler</option>
-                        <option value="read">Lidos</option>
+                        <option value="currentlyReading">Lendo</option>
+                        <option value="wantToRead">Quero ler</option>
+                        <option value="read">Ja lidos</option>
                         <option value="none">Remover livro</option>
                       </select>
                     </div>
@@ -92,7 +99,7 @@ function Buscar() {
                     <div className="book-authors">{livro.authors}</div>
                   </section>
                 </div>
-              </li>
+              </div>
             );
           })}
         </Modal>
